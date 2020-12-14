@@ -50,9 +50,20 @@ class ModelTests(TestCase):
     def test_register_user_api_fail(self):
         url = api_reverse('api-core:register')
         data = {
-            'username': 'JaneDoe',
-            'email': 'janedoe@gmail.com',
+            'name': 'NewUser',
+            'email': 'newuser@gmail.com',
             'password': 'senha12345',
         }
         response = self.client.post(url, data, follow='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_register_user_api_success(self):
+        url = api_reverse('api-core:register')
+        data = {
+            'name': 'NewUser',
+            'email': 'newuser@gmail.com',
+            'password': 'senha12345',
+            'password2': 'senha12345',
+        }
+        response = self.client.post(url, data, follow='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
