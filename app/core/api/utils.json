@@ -1,0 +1,16 @@
+"_ Register: http://localhost:8000/api/core/register/" ,
+
+{
+  "name": "peterparker",
+  "email": "peterparker@marvel.com",
+  "password": "theamazingspyderman",
+  "password2": "theamazingspyderman"
+
+}
+
+"_ Login: http://localhost:8000/api/core/login/",
+
+{
+"email": "peterparker@marvel.com",
+"password": "theamazingspyderman"
+}

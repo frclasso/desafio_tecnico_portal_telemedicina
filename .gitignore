@@ -22,3 +22,4 @@ node_modules
 
 .idea
 venv
+app/db.sqlite3

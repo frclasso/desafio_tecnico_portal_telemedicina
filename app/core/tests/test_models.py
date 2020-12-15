@@ -67,3 +67,5 @@ class ModelTests(TestCase):
         }
         response = self.client.post(url, data, follow='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+
