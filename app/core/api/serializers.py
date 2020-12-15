@@ -88,6 +88,23 @@ class EmptySerializer(serializers.Serializer):
     pass
 
 
+class PalestraDataSerializer(serializers.ModelSerializer):
+    uri = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Palestrante
+        fields = [
+            'uri',
+            'nome',
+            'titulo',
+
+        ]
+
+    def get_uri(self, obj):
+        request = self.context.get('request')
+        return api_reverse('api-core:lectures_detail', kwargs={"pk": obj.pk}, request=request)
+
+
 class PalestranteSerializer(serializers.ModelSerializer):
 
     uri = serializers.SerializerMethodField(read_only=True)
@@ -125,11 +142,13 @@ class PalestranteDetailSerializer(serializers.Serializer):
 class PalestraSerializer(serializers.ModelSerializer):
 
     uri = serializers.SerializerMethodField(read_only=True)
+    nome = PalestranteSerializer(required=False, read_only=True)
 
     class Meta:
         model = Palestra
         fields = [
             'id',
+            'uri',
             'nome',
             'titulo',
             'descricao',

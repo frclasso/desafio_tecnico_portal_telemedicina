@@ -132,6 +132,7 @@ class PalestraAPIView(viewsets.ModelViewSet):
     serializer_class = PalestraSerializer
     queryset = Palestra.objects.all()
     lookup_field = 'pk'
+    ordering_fields = ('data', )
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -167,3 +168,5 @@ class PalestraAPIView(viewsets.ModelViewSet):
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+

@@ -1,6 +1,11 @@
 from django.urls import path
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
-from .viewset import RegisterUserAPI, AuthAPIView, PalestranteAPIView, PalestraAPIView
+from .viewset import (
+    RegisterUserAPI,
+    AuthAPIView,
+    PalestranteAPIView,
+    PalestraAPIView,
+)
 
 app_name = 'core'
 
@@ -16,6 +21,7 @@ all_speakers = PalestranteAPIView.as_view({'get': 'list'})
 speaker = PalestranteAPIView.as_view({'get': 'retrieve'})
 update = PalestranteAPIView.as_view({'put': 'update'})
 delete = PalestranteAPIView.as_view({'delete': 'destroy'})
+
 
 """Palestras/Lecture"""
 create_lecture = PalestraAPIView.as_view({'post': 'create'})
@@ -37,6 +43,7 @@ urlpatterns = [
     path('speakers/<int:pk>/', speaker, name='speaker'),
     path('speakers/<int:pk>/update/', update, name='update'),
     path('speakers/<int:pk>/delete/', delete, name='delete'),
+
 
     path('lectures/new/', create_lecture, name='create_lecture'),
     path('lectures/', all_lectures, name='all_lectures'),

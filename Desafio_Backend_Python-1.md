@@ -9,9 +9,9 @@ Implementar uma aplicação server-side e uma client-side que permita o cadastro
 
 * Eu, como usuário, desejo adicionar um palestrante com seus dados (nome, mini bio e URL relacionada); [ok] 
 * Eu, como usuário, desejo ver a listagem dos palestrantes e se existem palestras atreladas;
-* Eu, como usuário, desejo editar ou excluir determinado palestrante;
-* Eu, como usuário, desejo criar uma palestra com seus dados (título, descrição, data e hora) e palestrante (utilizar lista de palestrantes cadastrados);
-* Eu, como usuário, desejo editar ou excluir determinada palestra;
+* Eu, como usuário, desejo editar ou excluir determinado palestrante;[ok]
+* Eu, como usuário, desejo criar uma palestra com seus dados (título, descrição, data e hora) e palestrante (utilizar lista de palestrantes cadastrados);[ok]
+* Eu, como usuário, desejo editar ou excluir determinada palestra;[ok]
 * Eu, como usuário, desejo poder ver as palestras (e seus detalhes) e palestrantes (e seus detalhes) de determinado dia.
 
 ### Definição de Pronto
