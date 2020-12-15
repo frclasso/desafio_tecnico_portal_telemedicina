@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.reverse import reverse as api_reverse
 
+from core.models import Palestrante
+
 
 class ModelTests(TestCase):
     """Classe de teste para os models/tabelas"""

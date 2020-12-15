@@ -7,7 +7,7 @@ Implementar uma aplicação server-side e uma client-side que permita o cadastro
 
 ### Requisitos
 
-* Eu, como usuário, desejo adicionar um palestrante com seus dados (nome, mini bio e URL relacionada);
+* Eu, como usuário, desejo adicionar um palestrante com seus dados (nome, mini bio e URL relacionada); [ok] 
 * Eu, como usuário, desejo ver a listagem dos palestrantes e se existem palestras atreladas;
 * Eu, como usuário, desejo editar ou excluir determinado palestrante;
 * Eu, como usuário, desejo criar uma palestra com seus dados (título, descrição, data e hora) e palestrante (utilizar lista de palestrantes cadastrados);

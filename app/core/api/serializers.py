@@ -1,6 +1,12 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model, password_validation
-from rest_framework.authtoken.models import Token
+from rest_framework_jwt.settings import api_settings
+jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
+jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
+jwt_response_payload_handler = api_settings.JWT_RESPONSE_PAYLOAD_HANDLER
+from rest_framework.reverse import reverse as api_reverse
+
+from core.models import Palestrante
 
 User = get_user_model()
 
@@ -59,8 +65,9 @@ class AuthUserSerializer(serializers.ModelSerializer):
         read_only_fields = ('id', 'is_active', 'is_staff', 'auth_token')
 
     def get_auth_token(self, obj):
-        token = Token.objects.create(user=obj)
-        return token.key
+        payload = jwt_payload_handler(user=obj)
+        token = jwt_encode_handler(payload)
+        return token
 
 
 class PasswordChangeSerializer(serializers.Serializer):
@@ -79,3 +86,37 @@ class PasswordChangeSerializer(serializers.Serializer):
 
 class EmptySerializer(serializers.Serializer):
     pass
+
+
+class PalestranteSerializer(serializers.ModelSerializer):
+
+    uri = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Palestrante
+        fields = [
+            'id',
+            'uri',
+            'nome',
+            'bio',
+        ]
+
+        read_only_fields = ['id', 'uri']
+
+    def get_uri(self, obj):
+        request = self.context.get('request')
+        return api_reverse('api-core:speaker', kwargs={"pk": obj.pk}, request=request)
+
+
+class PalestranteDetailSerializer(serializers.Serializer):
+    nome = serializers.CharField(max_length=120)
+    bio = serializers.CharField(max_length=1000)
+
+    def create(self, validated_data):
+        return Palestrante.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.nome = validated_data.get('nome', instance.nome)
+        instance.bio = validated_data.get('bio', instance.bio)
+        instance.save()
+        return instance
