@@ -6,7 +6,7 @@ jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 jwt_response_payload_handler = api_settings.JWT_RESPONSE_PAYLOAD_HANDLER
 from rest_framework.reverse import reverse as api_reverse
 
-from core.models import Palestrante
+from core.models import Palestrante, Palestra
 
 User = get_user_model()
 
@@ -110,7 +110,7 @@ class PalestranteSerializer(serializers.ModelSerializer):
 
 class PalestranteDetailSerializer(serializers.Serializer):
     nome = serializers.CharField(max_length=120)
-    bio = serializers.CharField(max_length=1000)
+    bio = serializers.CharField(max_length=2000, allow_null=True)
 
     def create(self, validated_data):
         return Palestrante.objects.create(**validated_data)
@@ -118,5 +118,44 @@ class PalestranteDetailSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         instance.nome = validated_data.get('nome', instance.nome)
         instance.bio = validated_data.get('bio', instance.bio)
+        instance.save()
+        return instance
+
+
+class PalestraSerializer(serializers.ModelSerializer):
+
+    uri = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Palestra
+        fields = [
+            'id',
+            'nome',
+            'titulo',
+            'descricao',
+            'data',
+        ]
+
+        read_only_fields = ['id', 'data']
+
+    def get_uri(self, obj):
+        request = self.context.get('request')
+        return api_reverse('api-core:lectures_detail', kwargs={"pk": obj.pk}, request=request)
+
+
+class PalestraDetailSerializer(serializers.Serializer):
+    palestrante = serializers.CharField(max_length=255)
+    titulo = serializers.CharField(max_length=255)
+    descricao = serializers.CharField(max_length=2000, allow_null=True)
+    data = serializers.DateTimeField()
+
+    def create(self, validated_data):
+        return Palestrante.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.palestrante = validated_data.get('palestrante', instance.palestrante)
+        instance.titulo = validated_data.get('titulo', instance.titulo)
+        instance.descricao = validated_data.get('descricao', instance.descricao)
+        instance.data = validated_data.get('data', instance.data)
         instance.save()
         return instance
