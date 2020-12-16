@@ -16,9 +16,9 @@ Implementar uma aplicação server-side e uma client-side que permita o cadastro
 
 ### Definição de Pronto
 
-* A aplicação deve estar acessível através de uma URL;
-* Adicionar ao README.md como rodar o projeto e a explicação das tomadas de decisões que você fez;
-* Use o banco de dados que achar melhor (relacional ou não relacional), aqui usamos SQLServer e MongoDB.
+* A aplicação deve estar acessível através de uma URL;[ok]
+* Adicionar ao README.md como rodar o projeto[ok] e a explicação das tomadas de decisões que você fez;
+* Use o banco de dados que achar melhor (relacional ou não relacional), aqui usamos SQLServer e MongoDB.[ok]
 
 ### Critérios de Avaliação
 

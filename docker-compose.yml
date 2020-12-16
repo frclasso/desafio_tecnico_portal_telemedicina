@@ -10,3 +10,17 @@ services:
     - ./app:/config
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DB_HOST=database
+      - DB_NAME=app
+      - DB_USER=postegres
+      - DB_PASS=supersecretpassword
+    depends_on:
+      - database
+
+  database:
+    image: library/postgres:10-alpine
+    environment:
+      - POSTGRES_DB=app
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=supersecretpassword

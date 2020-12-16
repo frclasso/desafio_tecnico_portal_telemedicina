@@ -108,6 +108,7 @@ class PalestraDataSerializer(serializers.ModelSerializer):
 class PalestranteSerializer(serializers.ModelSerializer):
 
     uri = serializers.SerializerMethodField(read_only=True)
+    palestra = PalestraDataSerializer(read_only=True)
 
     class Meta:
         model = Palestrante
@@ -116,6 +117,7 @@ class PalestranteSerializer(serializers.ModelSerializer):
             'uri',
             'nome',
             'bio',
+            'palestra',
         ]
 
         read_only_fields = ['id', 'uri']
@@ -139,20 +141,36 @@ class PalestranteDetailSerializer(serializers.Serializer):
         return instance
 
 
-class PalestraSerializer(serializers.ModelSerializer):
+class PalestranteNomeSerializer(serializers.ModelSerializer):
 
     uri = serializers.SerializerMethodField(read_only=True)
-    nome = PalestranteSerializer(required=False, read_only=True)
+
+    class Meta:
+        model = Palestrante
+        fields = [
+            'nome',
+            'uri',
+        ]
+
+    def get_uri(self, obj):
+        request = self.context.get('request')
+        return api_reverse('api-core:speaker', kwargs={"pk": obj.pk}, request=request)
+
+
+class PalestraSerializer(serializers.ModelSerializer):
+    """ Speaker"""
+    uri = serializers.SerializerMethodField(read_only=True)
+    nome = PalestranteNomeSerializer(required=False, read_only=True)
 
     class Meta:
         model = Palestra
         fields = [
             'id',
             'uri',
-            'nome',
             'titulo',
             'descricao',
             'data',
+            'nome',
         ]
 
         read_only_fields = ['id', 'data']
@@ -163,6 +181,7 @@ class PalestraSerializer(serializers.ModelSerializer):
 
 
 class PalestraDetailSerializer(serializers.Serializer):
+    """ Lecture """
     palestrante = serializers.CharField(max_length=255)
     titulo = serializers.CharField(max_length=255)
     descricao = serializers.CharField(max_length=2000, allow_null=True)
