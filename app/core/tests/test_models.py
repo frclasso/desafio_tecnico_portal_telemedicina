@@ -3,8 +3,6 @@ from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.reverse import reverse as api_reverse
 
-from core.models import Palestrante
-
 
 class ModelTests(TestCase):
     """Classe de teste para os models/tabelas"""
@@ -69,5 +67,3 @@ class ModelTests(TestCase):
         }
         response = self.client.post(url, data, follow='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
-

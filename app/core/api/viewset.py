@@ -1,7 +1,5 @@
-from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, status, permissions, mixins, generics
+from rest_framework import viewsets, status, permissions
 from django.contrib.auth import get_user_model, logout
-from rest_framework.authentication import SessionAuthentication
 from rest_framework.response import Response
 from django.core.exceptions import ImproperlyConfigured
 from rest_framework.decorators import action
@@ -14,7 +12,7 @@ from .serializers import (
     AuthUserSerializer,
     PasswordChangeSerializer,
     PalestranteSerializer,
-    PalestranteDetailSerializer, PalestraSerializer,
+    PalestraSerializer,
 )
 
 from .permissions import AnonPermissionOnly
@@ -168,5 +166,3 @@ class PalestraAPIView(viewsets.ModelViewSet):
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
