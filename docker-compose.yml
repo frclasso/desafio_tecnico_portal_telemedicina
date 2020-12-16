@@ -13,7 +13,7 @@ services:
     environment:
       - DB_HOST=database
       - DB_NAME=app
-      - DB_USER=postegres
+      - DB_USER=postgres
       - DB_PASS=supersecretpassword
     depends_on:
       - database
