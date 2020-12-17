@@ -41,7 +41,7 @@ http://localhost:8000/api/core/lectures/?data="2020-12-17"
 
 JSON Data Payloads
 ------------------
-- Para inserir dados utilizar o arquivo localzado em app/core/api/utils.jon
+- Para inserir dados utilizar o arquivo localizado em app/postman_collection
 ---
 
 Testando
