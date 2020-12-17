@@ -8,7 +8,7 @@ Implementar uma aplicação server-side e uma client-side que permita o cadastro
 ### Requisitos
 
 * Eu, como usuário, desejo adicionar um palestrante com seus dados (nome, mini bio e URL relacionada); [ok] 
-* Eu, como usuário, desejo ver a listagem dos palestrantes e se existem palestras atreladas;
+* Eu, como usuário, desejo ver a listagem dos palestrantes e se existem palestras atreladas;[ok]
 * Eu, como usuário, desejo editar ou excluir determinado palestrante;[ok]
 * Eu, como usuário, desejo criar uma palestra com seus dados (título, descrição, data e hora) e palestrante (utilizar lista de palestrantes cadastrados);[ok]
 * Eu, como usuário, desejo editar ou excluir determinada palestra;[ok]
@@ -25,12 +25,12 @@ Implementar uma aplicação server-side e uma client-side que permita o cadastro
 * Organização do projeto: Avalia a estrutura do projeto, documentação e uso de controle de versão;
 * Coerência: Avalia se os requisitos foram atendidos;
 * Boas práticas: Avalia se o projeto segue boas práticas de desenvolvimento, incluindo segurança e otimização;
-* Controle de Qualidade: Avalia se o projeto possui qualidade assegurada por testes automatizados e integração contínua (por exemplo [Travis](http://travis-ci.org/)).
+* Controle de Qualidade: Avalia se o projeto possui qualidade assegurada por testes automatizados e integração contínua (por exemplo [Travis](http://travis-ci.org/)).[ok]
 
 ### Observações
 
-* Preze pela simplicidade e resolução do problema com objetividade;
-* Use padrões REST e nomenclatura consistente nas rotas;
+* Preze pela simplicidade e resolução do problema com objetividade;[ok]
+* Use padrões REST e nomenclatura consistente nas rotas;[ok]
 * A performance e a componetização também serão avaliadas em todos os elementos do projeto.
 
 ### Processo de submissão

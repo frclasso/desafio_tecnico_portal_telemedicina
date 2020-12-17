@@ -34,6 +34,11 @@ End points
 - http://localhost:8000/api/core/lectures/<id>/delete/ >> Deleta Palestra
 -----
 
+Filtrando por data
+-------
+http://localhost:8000/api/core/lectures/?data="2020-12-17"
+
+
 JSON Data Payloads
 ------------------
 - Para inserir dados utilizar o arquivo localzado em app/core/api/utils.jon

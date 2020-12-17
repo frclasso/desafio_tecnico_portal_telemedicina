@@ -89,27 +89,13 @@ class EmptySerializer(serializers.Serializer):
     pass
 
 
-class PalestraDataSerializer(serializers.ModelSerializer):
-    uri = serializers.SerializerMethodField(read_only=True)
-
-    class Meta:
-        model = Palestrante
-        fields = [
-            'uri',
-            'nome',
-            'titulo',
-
-        ]
-
-    def get_uri(self, obj):
-        request = self.context.get('request')
-        return api_reverse('api-core:lectures_detail', kwargs={"pk": obj.pk}, request=request)
-
-
 class PalestranteSerializer(serializers.ModelSerializer):
 
     uri = serializers.SerializerMethodField(read_only=True)
-    palestra = PalestraDataSerializer(read_only=True)
+    palestras = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='titulo')
 
     class Meta:
         model = Palestrante
@@ -118,7 +104,7 @@ class PalestranteSerializer(serializers.ModelSerializer):
             'uri',
             'nome',
             'bio',
-            'palestra',
+            'palestras',
         ]
 
         read_only_fields = ['id', 'uri']
@@ -128,40 +114,9 @@ class PalestranteSerializer(serializers.ModelSerializer):
         return api_reverse('api-core:speaker', kwargs={"pk": obj.pk}, request=request)
 
 
-class PalestranteDetailSerializer(serializers.Serializer):
-    nome = serializers.CharField(max_length=120)
-    bio = serializers.CharField(max_length=2000, allow_null=True)
-
-    def create(self, validated_data):
-        return Palestrante.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        instance.nome = validated_data.get('nome', instance.nome)
-        instance.bio = validated_data.get('bio', instance.bio)
-        instance.save()
-        return instance
-
-
-class PalestranteNomeSerializer(serializers.ModelSerializer):
-
-    uri = serializers.SerializerMethodField(read_only=True)
-
-    class Meta:
-        model = Palestrante
-        fields = [
-            'nome',
-            'uri',
-        ]
-
-    def get_uri(self, obj):
-        request = self.context.get('request')
-        return api_reverse('api-core:speaker', kwargs={"pk": obj.pk}, request=request)
-
-
 class PalestraSerializer(serializers.ModelSerializer):
-    """ Speaker"""
+    """ Lecture """
     uri = serializers.SerializerMethodField(read_only=True)
-    nome = PalestranteNomeSerializer(required=False, read_only=True)
 
     class Meta:
         model = Palestra
@@ -171,30 +126,15 @@ class PalestraSerializer(serializers.ModelSerializer):
             'titulo',
             'descricao',
             'data',
+            'hora',
             'nome',
         ]
 
         read_only_fields = ['id', 'data']
 
+    def create(self, validated_data):
+        return Palestra.objects.create(**validated_data)
+
     def get_uri(self, obj):
         request = self.context.get('request')
         return api_reverse('api-core:lectures_detail', kwargs={"pk": obj.pk}, request=request)
-
-
-class PalestraDetailSerializer(serializers.Serializer):
-    """ Lecture """
-    palestrante = serializers.CharField(max_length=255)
-    titulo = serializers.CharField(max_length=255)
-    descricao = serializers.CharField(max_length=2000, allow_null=True)
-    data = serializers.DateTimeField()
-
-    def create(self, validated_data):
-        return Palestrante.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        instance.palestrante = validated_data.get('palestrante', instance.palestrante)
-        instance.titulo = validated_data.get('titulo', instance.titulo)
-        instance.descricao = validated_data.get('descricao', instance.descricao)
-        instance.data = validated_data.get('data', instance.data)
-        instance.save()
-        return instance

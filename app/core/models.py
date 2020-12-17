@@ -49,10 +49,13 @@ class Palestrante(models.Model):
 
 
 class Palestra(models.Model):
-    nome = models.ForeignKey(Palestrante, on_delete=models.CASCADE, default=None)
+
+    nome = models.ForeignKey(Palestrante, on_delete=models.CASCADE,
+                             default=None, related_name='palestras')
     titulo = models.CharField(max_length=255)
     descricao = models.CharField(max_length=255, null=True, blank=True)
-    data = models.DateTimeField(auto_now_add=True)
+    data = models.DateField(auto_now_add=True)
+    hora = models.TimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
         return f"{self.nome}  {self.titulo}"

@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from django.core.exceptions import ImproperlyConfigured
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from django_filters.rest_framework import DjangoFilterBackend
 
 from .serializers import (
     UserRegisterSerializer,
@@ -85,6 +86,10 @@ class PalestranteAPIView(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = PalestranteSerializer
     queryset = Palestrante.objects.all()
+
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['nome']
+
     lookup_field = 'pk'
 
     def create(self, request, *args, **kwargs):
@@ -129,8 +134,11 @@ class PalestraAPIView(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = PalestraSerializer
     queryset = Palestra.objects.all()
+
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['data']
+
     lookup_field = 'pk'
-    ordering_fields = ('data', )
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
