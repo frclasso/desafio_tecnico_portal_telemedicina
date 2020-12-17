@@ -44,7 +44,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"email\": \"useradmin@gmail.com\",\n  \"password\": \"mysuperpass\"\n}",
+					"raw": "{\n  \"email\": \"frclasso@gmail.com\",\n  \"password\": \"meidouzangetsuha\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -69,7 +69,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8000/api/core/logout/",
+			"name": "logout",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -135,6 +135,400 @@
 						"api",
 						"core",
 						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"peterparker@marvel.com\",\n  \"password\": \"theamazingspyderman\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/core/get-token/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"core",
+						"get-token",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_speaker",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "theamazingspyderman",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "peterparker@marvel.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"Ed Van Halen\",\n  \"bio\": \"A Magic Guitar Player\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/core/speakers/new/?email=peterparker@marvel.com&password=theamazingspyderman",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"core",
+						"speakers",
+						"new",
+						""
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "peterparker@marvel.com"
+						},
+						{
+							"key": "password",
+							"value": "theamazingspyderman"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_lecture",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "theamazingspyderman",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "peterparker@marvel.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"titulo\": \"Guitarras furiosas\",\n  \"descricao\": \"Minhas guiterra furiosa\",\n  \"nome\": \"Ed Van Halen\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/core/speakers/new/?email=peterparker@marvel.com&password=theamazingspyderman",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"core",
+						"speakers",
+						"new",
+						""
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "peterparker@marvel.com"
+						},
+						{
+							"key": "password",
+							"value": "theamazingspyderman"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list lectures",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/core/lectures/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"core",
+						"lectures",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "detail lecturer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/core/lectures/4/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"core",
+						"lectures",
+						"4",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update detai lecturer",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "theamazingspyderman",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "peterparker@marvel.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"titulo\": \"Ciencia de dados e Big Data\",\n    \"descricao\": \"Analisando dados em um novo mundo\",\n    \"nome\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/core/lectures/4/update/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"core",
+						"lectures",
+						"4",
+						"update",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete lecturer",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "theamazingspyderman",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "peterparker@marvel.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"titulo\": \"Ciencia de dados e Big Data\",\n    \"descricao\": \"Analisando dados em um novo mundo\",\n    \"nome\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/core/lectures/4/delete/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"core",
+						"lectures",
+						"4",
+						"delete",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list  speakers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/core/speakers/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"core",
+						"speakers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "detail speakers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/core/speakers/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"core",
+						"speakers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update speakers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/core/speakers/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"core",
+						"speakers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete speakers",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "theamazingspyderman",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "peterparker@marvel.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/core/speakers/6/delete/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"core",
+						"speakers",
+						"6",
+						"delete",
 						""
 					]
 				}
