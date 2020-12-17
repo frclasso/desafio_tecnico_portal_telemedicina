@@ -23,15 +23,15 @@ End points
 - http://localhost:8000/api/core/logout/
 ----
   
-- http://localhost:8000/api/core/speakers/ >> Listagem dos Palestrantes
-- http://localhost:8000/api/core/speakers/<id> >> Detalhes do Palestrante
-- http://localhost:8000/api/core/speakers/<id>/update/ >> Atualizar dados do Palestrante
-- http://localhost:8000/api/core/speakers/<id>/delete/ >> Deletar Palestrante juntamente com as palestras
+- http://localhost:8000/api/core/speakers/  >> Listagem dos Palestrantes
+- http://localhost:8000/api/core/speakers/"id"/   >> Detalhes do Palestrante
+- http://localhost:8000/api/core/speakers/"id"/update/   >> Atualizar dados do Palestrante
+- http://localhost:8000/api/core/speakers/"id"/delete/   >> Deleta Palestrante juntamente com as palestras
 -----
-- http://localhost:8000/api/core/lectures/ >> Listagem das Palestras
-- http://localhost:8000/api/core/lectures/<id> >> Detalhes da Palestra
-- http://localhost:8000/api/core/lectures/<id>/update/ >> Atualizar dados da Palestra
-- http://localhost:8000/api/core/lectures/<id>/delete/ >> Deleta Palestra
+- http://localhost:8000/api/core/lectures/  >> Listagem das Palestras
+- http://localhost:8000/api/core/lectures/"id"/  >> Detalhes da Palestra
+- http://localhost:8000/api/core/lectures/"id"/update/  >> Atualizar dados da Palestra
+- http://localhost:8000/api/core/lectures/"id"/delete/  >> Deleta Palestra
 -----
 
 Filtrando por data
